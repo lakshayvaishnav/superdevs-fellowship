@@ -1,0 +1,1 @@
+this crate implements the hellomacro trait
