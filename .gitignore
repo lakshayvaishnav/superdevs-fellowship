@@ -1,0 +1,71 @@
+# === Rust Build Artifacts ===
+/target/
+**/*.rs.bk
+
+# === Cargo Files ===
+/Cargo.lock
+/.cargo/
+
+# === By default, don't ignore lockfile for libraries ===
+# Uncomment if you're working on a binary project
+# /Cargo.lock
+
+# === IDEs & Editors ===
+
+# VSCode
+/.vscode/
+/.vscode/
+
+# IntelliJ / CLion / RustRover
+.idea/
+*.iml
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# === OS-specific ===
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# === Logs ===
+*.log
+
+# === Temporary Files ===
+*.tmp
+*.swp
+*.bak
+*.old
+*.orig
+
+# === Test Artifacts ===
+/coverage/
+/debug/
+
+# === Optional: ignore expanded macro output ===
+expanded.rs
+
+# === Optional: ignore docs output ===
+/doc/
+
+# === Optional: ignore local environment files ===
+.env
+.env.*
+
+# === Optional: ignore binary output ===
+*.exe
+*.dll
+*.so
+*.dylib
+*.bin
+*.out
+
