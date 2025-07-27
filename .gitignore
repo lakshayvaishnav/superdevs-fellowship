@@ -1,7 +1,7 @@
 # === Rust Build Artifacts ===
 /target/
 **/*.rs.bk
-
+./target
 # === Cargo Files ===
 /Cargo.lock
 /.cargo/
