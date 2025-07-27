@@ -10,7 +10,7 @@ pub fn serialize_number_struct(input: TokenStream) -> TokenStream {
     impl_serialize(&ast)
 }
 
-#[proc_macro_derive(DesrializeNumberStruct)]
+#[proc_macro_derive(DeserializeNumberStruct)]
 pub fn deserialize_number_struct(input: TokenStream) -> TokenStream {
     let ast: DeriveInput = syn::parse(input).unwrap();
     impl_deserialize(&ast)
@@ -67,13 +67,13 @@ fn impl_deserialize(ast: &DeriveInput) -> TokenStream {
                     for field in &fields.named {
                         let field_name = &field.ident;
                         let field_size = 4;
-                        let start_offest = offset;
+                        let start_offset = offset;
                         let end_offset = offset + field_size;
 
                         field_deserialization.push(
                             quote! {
-                            let #field.name = {
-                                let bytes : [u8;4] = base[#start_offest..#end_offset].try_into().map_err(|_| Error)?;
+                            let #field_name = {
+                                let bytes : [u8;4] = base[#start_offset..#end_offset].try_into().map_err(|_| Error)?;
                                 i32::from_be_bytes(bytes)
                             };
                         }
@@ -96,13 +96,13 @@ fn impl_deserialize(ast: &DeriveInput) -> TokenStream {
 
     let generated = quote! {
         impl Deserialize for #name {
-            fn deserailize(base: &[u8]) -> Result<Self, Error> {
+            fn deserialize(base: &[u8]) -> Result<Self, Error> {
                 if base.len() < #total_size {
                  return Err(Error)   
                 }
                 #(#deserialize_fields)*
 
-                oK(#name {
+                Ok(#name {
                     #(#field_assignments,)*
                 })
             }
